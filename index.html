@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131921">
+  <title>Raw Gravity × Take My Muffin — Exclusive Edition</title>
+  <meta name="description" content="Take My Muffin Exclusive Edition — low-caffeine nootropic mushroom coffee, made in USA.">
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="preconnect" href="https://www.facebook.com" crossorigin>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #131921;
+      --navy2: #232f3e;
+      --navy3: #37475a;
+      --border-dark: #485769;
+      --text: #0f1111;
+      --muted: #565959;
+      --muted-light: #8a8f8f;
+      --border: #e7e7e7;
+      --page: #eaeded;
+      --amazon-yellow: #ffd814;
+      --amazon-yellow-hover: #f7ca00;
+      --orange: #ff9900;
+      --discount: #cc0c39;
+      --green: #067d62;
+      --bluegreen: #5b7a8f;
+      --active-dot: #e77600;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: #007185; }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .page-shell { width: 100%; min-height: 100vh; margin: 0 auto; background: #fff; position: relative; }
+    .brandbar {
+      height: auto;
+      padding: 14px 32px;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    .brandbar__inner, .subbar__inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brandbar__name { font-size: 20px; font-weight: 700; letter-spacing: -.2px; white-space: nowrap; }
+    .brandbar__x { font-weight: 400; color: #d5d9d9; }
+    .subbar {
+      height: auto;
+      padding: 9px 0;
+      background: var(--navy2);
+      color: #fff;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+    .subbar__inner { padding: 0 32px; }
+    .hero {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 32px;
+      min-height: calc(100vh - 208px);
+      display: grid;
+      grid-template-columns: minmax(400px, 1.05fr) minmax(520px, 1fr);
+      gap: 56px;
+      align-items: center;
+      background: #fff;
+    }
+    .gallery-column { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+    .gallery {
+      position: relative;
+      width: 100%;
+      max-width: min(520px, max(400px, calc(100vh - 300px)));
+      aspect-ratio: 1;
+      background: #fff;
+    }
+    .gallery__viewport { height: 100%; width: 100%; overflow: hidden; }
+    .gallery__track { display: flex; height: 100%; transition: transform .35s ease; will-change: transform; }
+    .gallery__slide { flex: 0 0 100%; height: 100%; }
+    .gallery__slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .choice-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 3;
+      padding: 5px 9px; border-radius: 3px; background: var(--navy2); color: #fff;
+      font-size: 13px; line-height: 1; white-space: nowrap;
+    }
+    .choice-badge strong { color: var(--orange); }
+    .discount-ribbon {
+      position: absolute; left: 0; top: 0; width: 150px; height: 150px;
+      overflow: hidden; z-index: 3; pointer-events: none;
+    }
+    .discount-ribbon span {
+      position: absolute; top: 32px; left: -52px; width: 220px; transform: rotate(-45deg);
+      background: var(--discount); color: #fff; text-align: center; font-size: 20px; font-weight: 800;
+      line-height: 1; padding: 9px 0; box-shadow: 0 2px 4px rgba(0,0,0,.25);
+    }
+    .gallery-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 4;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      padding: 0; border: 1px solid #d5d9d9; border-radius: 50%; color: var(--text);
+      background: rgba(255,255,255,.85); box-shadow: 0 1px 4px rgba(0,0,0,.15);
+      font-size: 24px; line-height: 1; cursor: pointer;
+    }
+    .gallery-arrow:hover { background: #fff; }
+    .gallery-arrow--prev { left: -22px; }
+    .gallery-arrow--next { right: -22px; }
+    .gallery-dots { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 14px; }
+    .gallery-dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: #d5d9d9; }
+    .gallery-dot[aria-current="true"] { background: var(--active-dot); }
+    .offer-column { display: flex; flex-direction: column; max-width: 560px; min-width: 520px; }
+    .product-title {
+      margin: 0; color: var(--text); font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+      font-size: 22px; line-height: 31px; font-weight: 500; letter-spacing: .1px; word-spacing: 1px;
+      -webkit-text-stroke: .15px var(--text);
+    }
+    .product-title span { display: block; }
+    .price-row {
+      display: flex; align-items: baseline; gap: 10px; margin-top: 18px;
+      border-top: 1px solid var(--border); padding-top: 16px;
+    }
+    .price-discount { color: var(--discount); font-size: 30px; font-weight: 300; white-space: nowrap; }
+    .struck-price { position: relative; font-size: 38px; line-height: 1; white-space: nowrap; }
+    .struck-price .currency, .struck-price .cents { font-size: 17px; vertical-align: top; }
+    .slash { position: absolute; left: -3px; top: 2px; width: calc(100% + 6px); height: calc(100% - 4px); overflow: visible; pointer-events: none; }
+    .one-time-price { color: var(--muted); font-size: 16px; white-space: nowrap; }
+    .coupon-stack { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+    .coupon-card { display: flex; align-items: center; gap: 16px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; }
+    .coupon-badge {
+      flex: none; width: 82px; padding: 10px 0; border-radius: 4px; text-align: center; color: #fff;
+      font-size: 30px; line-height: 1; font-weight: 800;
+    }
+    .coupon-badge--first { background: var(--green); transform: rotate(-4deg); }
+    .coupon-badge--subscribe { background: var(--bluegreen); transform: rotate(3deg); }
+    .coupon-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .coupon-copy strong { font-size: 18px; line-height: 1.25; }
+    .coupon-copy span { color: var(--muted); font-size: 14px; line-height: 1.35; }
+    .buy-button {
+      display: flex; width: 100%; height: 54px; margin-top: 22px; align-items: center; justify-content: center;
+      border: 0; border-radius: 27px; background: var(--amazon-yellow); color: var(--text);
+      font-size: 18px; text-decoration: none; cursor: pointer; box-shadow: 0 2px 5px rgba(213,217,217,.5);
+      transition: background .15s ease, transform .15s ease;
+    }
+    .buy-button:hover { background: var(--amazon-yellow-hover); color: var(--text); }
+    .buy-button:active { transform: translateY(1px); }
+    .benefits { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+    .ticker {
+      width: 100%; background: var(--text); color: #fff; overflow: hidden; display: flex; align-items: center;
+      height: 46px; font-size: 15px; letter-spacing: .4px; white-space: nowrap;
+    }
+    .ticker__track { display: flex; flex: 0 0 auto; width: max-content; animation: ticker-scroll 30s linear infinite; }
+    .ticker__group { display: flex; flex: 0 0 auto; align-items: center; }
+    .ticker__item { display: flex; align-items: center; gap: 20px; padding-right: 20px; white-space: nowrap; }
+    .ticker__dot { font-size: 10px; }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .facts { height: 72px; border-bottom: 1px solid var(--border); background: #fff; }
+    .facts__inner {
+      width: 100%; max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: center; gap: 56px;
+    }
+    .fact { display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; white-space: nowrap; }
+    .fact strong { font-size: 15px; font-weight: 700; letter-spacing: .6px; }
+    .fact span { color: var(--muted); font-size: 13px; }
+    .fact-divider { width: 1px; height: 32px; background: #d5d9d9; flex: none; }
+    .limited-banner {
+      position: relative; width: 100%; overflow: hidden; line-height: 0; background: #f7941d;
+    }
+    .limited-banner::before {
+      content: ""; position: absolute; inset: -30px;
+      background: radial-gradient(ellipse at 50% 35%, rgba(255,236,80,.85) 0%, rgba(255,214,30,.5) 30%, rgba(245,140,25,0) 75%), repeating-conic-gradient(from 0deg at 50% 35%, #ffc61a 0deg 5deg, #f7a11f 5deg 10deg), #f7941d;
+      filter: blur(6px);
+    }
+    .limited-banner img { position: relative; display: block; width: 100%; max-width: 1200px; height: auto; margin: 0 auto; }
+    .footer { display: flex; flex-direction: column; background: var(--navy2); color: #d5d9d9; }
+    .newsletter { background: var(--navy2); padding: 28px 32px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .newsletter__title { color: #fff; font-size: 16px; line-height: 1.25; font-weight: 700; text-align: center; }
+    .newsletter-form { width: 100%; max-width: 460px; display: flex; gap: 8px; margin: 0; }
+    .newsletter-form input {
+      flex: 1; min-width: 0; height: 40px; border: 1px solid var(--border-dark); border-radius: 6px;
+      background: var(--navy); color: #fff; padding: 0 12px; font-size: 14px; outline: none;
+    }
+    .newsletter-form input::placeholder { color: #aab3bd; }
+    .newsletter-form input:focus { border-color: #91b5ce; box-shadow: 0 0 0 2px rgba(145,181,206,.18); }
+    .newsletter-form button {
+      flex: none; min-height: 40px; padding: 0 16px; border: 1px solid var(--border-dark); border-radius: 6px;
+      background: transparent; color: #fff; font-size: 14px; cursor: pointer;
+    }
+    .newsletter-form button:hover { background: var(--navy3); }
+    .newsletter-form button:disabled { opacity: .65; cursor: wait; }
+    .form-status { width: 100%; max-width: 460px; font-size: 13px; line-height: 1.4; }
+    .form-status--success { color: #c7f3d9; }
+    .form-status--error { color: #ffc6c6; }
+    [hidden] { display: none !important; }
+    .footer-bottom {
+      background: var(--navy); padding: 12px 16px; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 6px; text-align: center; font-size: 10px; line-height: 1.4; color: #999;
+    }
+    .footer-break { flex-basis: 100%; height: 0; }
+    .redirect-overlay {
+      position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; padding: 20px; background: rgba(255,255,255,.95); color: var(--text); text-align: center;
+    }
+    .redirect-overlay[hidden] { display: none !important; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--orange); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .redirect-overlay strong { font-size: 16px; font-weight: 500; }
+    .noscript-note { margin: 12px; padding: 12px; background: #fff3cd; color: #664d03; }
+
+    @media (min-width: 1024px) { body { min-width: 1040px; } }
+    @media (max-width: 1023px) {
+      body { background: var(--page); }
+      .page-shell { width: min(100%, 390px); min-width: 0; min-height: 100dvh; margin: 0 auto; background: #fff; }
+      .brandbar { flex: 0 0 44px; height: 44px; padding: 14px 16px; }
+      .brandbar__name { font-size: 14px; letter-spacing: -.1px; }
+      .subbar { flex: 0 0 31px; height: 31px; padding: 0; font-size: 13px; }
+      .subbar__inner { padding: 0 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .hero {
+        flex: none; height: 686px; min-height: 686px; max-height: 686px;
+        display: flex; flex-direction: column; align-items: stretch; gap: 0;
+        padding: 22px 16px 20px; overflow: visible;
+      }
+      .gallery-column { flex: none; width: 100%; }
+      .gallery { width: min(300px, calc(100vw - 48px)); max-width: 300px; }
+      .choice-badge { top: 8px; right: 8px; font-size: 11px; padding: 4px 7px; }
+      .discount-ribbon { width: 110px; height: 110px; }
+      .discount-ribbon span { top: 24px; left: -40px; width: 160px; font-size: 16px; padding: 7px 0; }
+      .gallery-arrow { width: 34px; height: 34px; font-size: 20px; background: rgba(255,255,255,.85); }
+      .gallery-arrow--prev { left: -24px; }
+      .gallery-arrow--next { right: -24px; }
+      .gallery-dots { gap: 6px; margin-top: 8px; }
+      .gallery-dot { width: 8px; height: 8px; }
+      .offer-column { width: 100%; max-width: none; min-width: 0; flex: none; }
+      .product-title { font-size: 16px; line-height: 23px; margin: 8px 0 2px; }
+      .price-row { margin-top: 10px; padding-top: 10px; gap: 8px; justify-content: center; }
+      .price-discount { font-size: 24px; }
+      .struck-price { font-size: 30px; }
+      .struck-price .currency, .struck-price .cents { font-size: 14px; }
+      .one-time-price { font-size: 14px; }
+      .coupon-stack { gap: 6px; margin-top: 8px; }
+      .coupon-card { gap: 12px; padding: 8px 12px; }
+      .coupon-badge { width: 66px; padding: 8px 0; font-size: 24px; }
+      .coupon-copy { gap: 1px; }
+      .coupon-copy strong { font-size: 15px; line-height: 1.15; }
+      .coupon-copy span { font-size: 12px; line-height: 1.2; }
+      .buy-button { flex: none; height: 46px; margin-top: 12px; border-radius: 23px; font-size: 16px; }
+      .benefits { gap: 28px; margin-top: 6px; font-size: 11px; color: var(--muted-light); }
+      .ticker { height: 40px; flex: 0 0 40px; font-size: 13px; letter-spacing: .3px; }
+      .ticker__track { animation-duration: 18s; }
+      .ticker__item { gap: 14px; padding-right: 14px; }
+      .ticker__dot { font-size: 10px; }
+      .facts { height: 43px; flex: 0 0 43px; overflow: hidden; }
+      .facts__inner { height: 42px; padding: 0 22px; gap: 10px; justify-content: space-evenly; }
+      .fact { gap: 2px; }
+      .fact strong { font-size: 13px; letter-spacing: .6px; }
+      .fact span { font-size: 11px; }
+      .fact-divider { height: 26px; }
+      .limited-banner img { width: 100%; }
+      .newsletter { padding: 16px; }
+      .newsletter__title { font-size: 16px; }
+      .newsletter-form { gap: 6px; }
+      .newsletter-form input { height: 36px; padding: 0 10px; font-size: 13px; }
+      .newsletter-form button { min-height: 36px; height: 36px; padding: 0 14px; font-size: 13px; }
+      .footer-bottom { padding: 12px 16px; gap: 6px; }
+      .footer-break { flex-basis: 100%; }
+    }
+    @media (max-width: 360px) {
+      .brandbar__name { font-size: 12px; }
+      .hero { padding-left: 14px; padding-right: 14px; }
+      .gallery { width: min(300px, calc(100vw - 48px)); height: min(300px, calc(100vw - 48px)); }
+      .benefits { gap: 15px; }
+      .coupon-card { gap: 8px; padding-left: 8px; padding-right: 8px; }
+      .coupon-badge { width: 58px; }
+      .facts__inner { padding: 0 10px; gap: 6px; }
+      .fact strong { font-size: 11px; }
+      .fact span { font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+  <!-- URL-parameter-based ad pixels: ?pixel=... and ?fbpixel=... -->
+  <script src="./pixel.js"></script>
+  <script src="./fbpixel.js"></script>
+</head>
+<body>
+  <main class="page-shell">
+      <header>
+        <div class="brandbar"><div class="brandbar__inner"><div class="brandbar__name">RAW GRAVITY <span class="brandbar__x">×</span> TAKE MY MUFFIN</div></div></div>
+        <div class="subbar"><div class="subbar__inner">Special Limited Edition · Official Collaboration</div></div>
+      </header>
+
+      <section class="hero" aria-label="Take My Muffin Exclusive Edition offer">
+          <div class="gallery-column">
+            <div class="gallery" aria-label="Product image gallery">
+              <div class="gallery__viewport">
+                <div class="gallery__track" id="gallery-track">
+                  <div class="gallery__slide"><img src="assets/product.jpg" alt="Take My Muffin Mushroom Coffee" fetchpriority="high"></div>
+                  <div class="gallery__slide"><img src="assets/slide-2.jpg" alt="Take My Muffin Mushroom Coffee detail" loading="lazy"></div>
+                  <div class="gallery__slide"><img src="assets/slide-3.jpg" alt="Take My Muffin Raw Coffee+ and iced coffee" loading="lazy"></div>
+                  <div class="gallery__slide"><img src="assets/slide-unicorn.jpg" alt="Strength You Can Taste" loading="lazy"></div>
+                  <div class="gallery__slide"><img src="assets/slide-4.jpg" alt="Take My Muffin special edition packaging" loading="lazy"></div>
+                </div>
+              </div>
+              <div class="choice-badge">Amazon's <strong>Choice</strong></div>
+              <div class="discount-ribbon" aria-hidden="true"><span>-35% OFF</span></div>
+              <button class="gallery-arrow gallery-arrow--prev" type="button" aria-label="Previous product image">‹</button>
+              <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next product image">›</button>
+            </div>
+            <div class="gallery-dots" id="gallery-dots" aria-label="Choose product image">
+              <button class="gallery-dot" type="button" aria-label="Slide 1" aria-current="true" data-slide="0"></button>
+              <button class="gallery-dot" type="button" aria-label="Slide 2" aria-current="false" data-slide="1"></button>
+              <button class="gallery-dot" type="button" aria-label="Slide 3" aria-current="false" data-slide="2"></button>
+              <button class="gallery-dot" type="button" aria-label="Slide 4" aria-current="false" data-slide="3"></button>
+              <button class="gallery-dot" type="button" aria-label="Slide 5" aria-current="false" data-slide="4"></button>
+            </div>
+          </div>
+
+          <div class="offer-column">
+            <h1 class="product-title"><span>Take My Muffin Exclusive Edition - <span style="display:inline;white-space:nowrap">Low-Caffeine</span></span><span>Nootropic Mushroom Coffee - <span style="display:inline;white-space:nowrap">Made in USA</span></span></h1>
+            <div class="price-row">
+              <span class="price-discount">-35%</span>
+              <span class="struck-price"><span class="currency">$</span>24<span class="cents">95</span><svg class="slash" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="92" x2="100" y2="8" stroke="#cc0c39" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linecap="round"></line></svg></span>
+              <span class="one-time-price">One-Time Price: $16.21</span>
+            </div>
+            <div class="coupon-stack">
+              <div class="coupon-card"><div class="coupon-badge coupon-badge--first">25%</div><div class="coupon-copy"><strong>OFF your first order</strong><span>Coupon: 25% off applied to first order.</span></div></div>
+              <div class="coupon-card"><div class="coupon-badge coupon-badge--subscribe">10%</div><div class="coupon-copy"><strong>OFF with Subscribe &amp; Save</strong><span>Save 10% now and up to 15% on repeat deliveries.</span></div></div>
+            </div>
+            <a class="buy-button buy-on-amazon" href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&amp;ref_=aa_maas&amp;tag=maas">Buy on Amazon</a>
+            <div class="benefits"><span>Money back guaranty</span><span>Fast delivery</span></div>
+          </div>
+      </section>
+
+      <div class="ticker" aria-label="Product benefits">
+        <div class="ticker__track">
+          <div class="ticker__group" aria-hidden="true">
+            <div class="ticker__item">PEAK FOCUS <span class="ticker__dot">●</span></div><div class="ticker__item">SUSTAINED ENERGY <span class="ticker__dot">●</span></div><div class="ticker__item">ZERO CRASH <span class="ticker__dot">●</span></div><div class="ticker__item">MENTAL CLARITY <span class="ticker__dot">●</span></div><div class="ticker__item">STRESS RELIEF <span class="ticker__dot">●</span></div>
+          </div>
+          <div class="ticker__group" aria-hidden="true">
+            <div class="ticker__item">PEAK FOCUS <span class="ticker__dot">●</span></div><div class="ticker__item">SUSTAINED ENERGY <span class="ticker__dot">●</span></div><div class="ticker__item">ZERO CRASH <span class="ticker__dot">●</span></div><div class="ticker__item">MENTAL CLARITY <span class="ticker__dot">●</span></div><div class="ticker__item">STRESS RELIEF <span class="ticker__dot">●</span></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="facts" aria-label="Product facts">
+        <div class="facts__inner">
+          <div class="fact"><strong>MADE IN USA</strong><span>exclusive edition</span></div><div class="fact-divider" aria-hidden="true"></div>
+          <div class="fact"><strong>100% VEGAN</strong><span>plant-based</span></div><div class="fact-divider" aria-hidden="true"></div>
+          <div class="fact"><strong>INSTANT</strong><span>low-caffeine arabica</span></div>
+        </div>
+      </section>
+
+    <section class="limited-banner" aria-label="Special Limited Edition">
+      <div class="limited-banner__rays" aria-hidden="true"></div>
+      <img src="assets/banner-limited.png" alt="Special Limited Edition — Raw Gravity × Take My Muffin" fetchpriority="high">
+    </section>
+
+    <footer class="footer">
+      <section class="newsletter" aria-label="Email subscription">
+        <div class="newsletter__title">Want Take My Muffin fan drops &amp; bonuses?</div>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" id="newsletter-email" name="email" autocomplete="email" placeholder="Your email" aria-label="Your email" required>
+          <button type="submit" id="newsletter-submit">Subscribe</button>
+        </form>
+        <div class="form-status form-status--success" id="newsletter-success" role="status" hidden>You're first in line!</div>
+        <div class="form-status form-status--error" id="newsletter-error" role="alert" hidden>Subscription failed. Please try again.</div>
+      </section>
+      <div class="footer-bottom"><span>© 2026 Raw Gravity × Take My Muffin</span><span class="footer-break" aria-hidden="true"></span><span>Amazon is a trademark of Amazon.com, Inc.</span></div>
+    </footer>
+  </main>
+
+  <div class="redirect-overlay" id="redirect-overlay" aria-live="polite" hidden><div class="spinner" aria-hidden="true"></div><strong>Opening Amazon…</strong></div>
+  <noscript><div class="noscript-note">Enable JavaScript to use the product gallery and email subscription form.</div></noscript>
+
+  <script>
+    (() => {
+      'use strict';
+      const amazonUrl = 'https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas';
+      const track = document.getElementById('gallery-track');
+      const dots = Array.from(document.querySelectorAll('.gallery-dot'));
+      const overlay = document.getElementById('redirect-overlay');
+      let currentSlide = 0;
+      let redirectStarted = false;
+
+      function showSlide(index) {
+        currentSlide = (index + dots.length) % dots.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((dot, idx) => dot.setAttribute('aria-current', String(idx === currentSlide)));
+      }
+      document.querySelector('.gallery-arrow--prev').addEventListener('click', () => showSlide(currentSlide - 1));
+      document.querySelector('.gallery-arrow--next').addEventListener('click', () => showSlide(currentSlide + 1));
+      dots.forEach(dot => dot.addEventListener('click', () => showSlide(Number(dot.dataset.slide))));
+
+      document.querySelectorAll('.buy-on-amazon').forEach(link => {
+        link.href = amazonUrl;
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          if (redirectStarted) return;
+          redirectStarted = true;
+          try { if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout'); } catch (_) {}
+          overlay.hidden = false;
+          window.setTimeout(() => { window.location.href = amazonUrl; }, 400);
+        });
+      });
+
+      const form = document.getElementById('newsletter-form');
+      const emailInput = document.getElementById('newsletter-email');
+      const submitButton = document.getElementById('newsletter-submit');
+      const success = document.getElementById('newsletter-success');
+      const error = document.getElementById('newsletter-error');
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!emailInput.reportValidity()) return;
+        submitButton.disabled = true;
+        const originalLabel = submitButton.textContent;
+        submitButton.textContent = 'Sending…';
+        error.hidden = true;
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: emailInput.value.trim(),
+              landing: 'tmmzc2s',
+              source: (params.get('source') || 'meta').toLowerCase(),
+              creative: params.get('creative') || 'unknown'
+            })
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok || !result.success) throw new Error(result.error || 'Subscription failed');
+          form.hidden = true;
+          success.hidden = false;
+          // Pixel Lead Wiring Spec: fire both events only after the subscription succeeded.
+          const pixelId = params.get('pixel');
+          if (pixelId && typeof window.ttq !== 'undefined' && typeof window.ttq.instance === 'function') {
+            window.ttq.instance(pixelId).track('SubmitForm', { content_name: 'Coupon Code Revealed' });
+            window.ttq.instance(pixelId).track('Contact', { content_type: 'promo_code', content_name: 'Coupon Code Revealed' });
+          }
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'Lead', { content_name: '25% OFF Promo Code', currency: 'USD', value: 0 });
+            window.fbq('track', 'Contact');
+          }
+        } catch (err) {
+          console.error('Newsletter submission failed:', err);
+          error.hidden = false;
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
