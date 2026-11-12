@@ -338,7 +338,7 @@
               <div class="coupon-card"><div class="coupon-badge coupon-badge--first">25%</div><div class="coupon-copy"><strong>OFF your first order</strong><span>Coupon: 25% off applied to first order.</span></div></div>
               <div class="coupon-card"><div class="coupon-badge coupon-badge--subscribe">10%</div><div class="coupon-copy"><strong>OFF with Subscribe &amp; Save</strong><span>Save 10% now and up to 15% on repeat deliveries.</span></div></div>
             </div>
-            <a class="buy-button buy-on-amazon" href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&amp;ref_=aa_maas&amp;tag=maas">Buy on Amazon</a>
+            <a class="buy-button buy-on-amazon" target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&amp;ref_=aa_maas&amp;tag=maas">Buy on Amazon</a>
             <div class="benefits"><span>Money back guaranty</span><span>Fast delivery</span></div>
           </div>
       </section>
@@ -390,9 +390,7 @@
       const amazonUrl = 'https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas';
       const track = document.getElementById('gallery-track');
       const dots = Array.from(document.querySelectorAll('.gallery-dot'));
-      const overlay = document.getElementById('redirect-overlay');
       let currentSlide = 0;
-      let redirectStarted = false;
 
       function showSlide(index) {
         currentSlide = (index + dots.length) % dots.length;
@@ -405,13 +403,10 @@
 
       document.querySelectorAll('.buy-on-amazon').forEach(link => {
         link.href = amazonUrl;
-        link.addEventListener('click', event => {
-          event.preventDefault();
-          if (redirectStarted) return;
-          redirectStarted = true;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.addEventListener('click', () => {
           try { if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout'); } catch (_) {}
-          overlay.hidden = false;
-          window.setTimeout(() => { window.location.href = amazonUrl; }, 400);
         });
       });
 
